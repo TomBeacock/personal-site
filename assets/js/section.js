@@ -5,10 +5,7 @@ const languageCheckboxes = document.getElementById("language-filter").getElement
 const fieldCheckboxes = document.getElementById("field-filter").getElementsByTagName("input");
 
 const languageClearButton = document.getElementById("language-filter").querySelector(".filter-group-header button");
-languageClearButton.style.visibility = "hidden";
-
 const fieldClearButton = document.getElementById("field-filter").querySelector(".filter-group-header button");
-fieldClearButton.style.visibility = "hidden";
 
 function onFilterChange() {
     const languages = new Set();
