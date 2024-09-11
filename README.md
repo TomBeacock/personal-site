@@ -1,3 +1,5 @@
 # Personal Site
 
-Personal site built using [Hugo](https://gohugo.io/).
+Personal site, hosted at https://tombeacock.com.
+
+Built using [Hugo](https://gohugo.io/).
