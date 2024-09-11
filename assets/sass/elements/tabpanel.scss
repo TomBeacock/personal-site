@@ -1,0 +1,28 @@
+.tab-panel {
+    background-color: var(--bg-level1);
+    border-radius: 0.25rem;
+}
+
+.tab-nav {
+    border-bottom: solid 1px var(--divider);
+}
+
+.tab-button {
+    border-radius: 0.25rem 0.25rem 0 0;
+
+    &.active {
+        color: var(--plain-color-primary);
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+}
+
+.tab-content {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}

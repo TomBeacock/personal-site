@@ -1,0 +1,2 @@
+{{ $opts := dict "hl_inline" true "linenos" false }}
+{{ highlight .Inner (.Get 0) $opts }}

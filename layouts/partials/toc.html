@@ -1,0 +1,16 @@
+<nav class="toc">
+    {{- range .Fragments.Headings -}}
+    <ul>
+        {{- range .Headings -}}
+            <li><a href="#{{ .ID }}">{{ .Title }}</a></li>
+            {{- if .Headings -}}
+                <ul>
+                    {{- range .Headings -}}
+                        <li><a href="#{{ .ID }}">{{ .Title }}</a></li>
+                    {{- end -}}      
+                </ul>
+            {{- end -}}
+        {{- end -}}
+    </ul>
+    {{- end -}}
+</nav>

@@ -1,0 +1,100 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+
+{{- /* Favicon */}}
+{{ $faviconLight := resources.Get "images/favicon/light.ico" }}
+<link rel="icon" type="image/x-icon" href="{{ $faviconLight.RelPermalink }}" media="(prefers-color-scheme: light)">
+{{ $faviconDark := resources.Get "images/favicon/dark.ico" }}
+<link rel="icon" type="image/x-icon" href="{{ $faviconDark.RelPermalink }}" media="(prefers-color-scheme: dark)">
+
+{{- /* Scss */}}
+{{ $opts := dict "transpiler" "dartsass" "targetPath" "css/main.css" }}
+{{ with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+{{ end }}
+{{ if .IsHome }}
+    {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/home.css" }}
+    {{ with resources.Get "sass/home.scss" | toCSS $opts | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{ end }}
+{{ end }}
+{{ if .IsSection }}
+    {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/section.css" }}
+    {{ with resources.Get "sass/section.scss" | toCSS $opts | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{ end }}
+{{ end }}
+{{ if .IsPage }}
+    {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/single.css" }}
+    {{ with resources.Get "sass/single.scss" | toCSS $opts | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{ end }}
+    {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/syntax.css" }}
+    {{ with resources.Get "sass/syntax.scss" | toCSS $opts | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{ end }}
+{{ end }}
+{{ if eq .Kind "404" }}
+    {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/404.css" }}
+    {{ with resources.Get "sass/404.scss" | toCSS $opts | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{ end }}
+{{ end }}
+
+{{- /* Fonts */}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
+
+{{- /* Js */ -}}
+{{ $opts := dict "targetpath" "js/main.js" }}
+{{ with resources.Get "js/main.js" | js.Build $opts | minify | fingerprint }}
+    <script type="text/javascript" src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+{{ end }}
+
+{{ if .IsSection }}
+    {{ $opts := dict "targetpath" "js/section.js" }}
+    {{ with resources.Get "js/section.js" | js.Build $opts | minify | fingerprint }}
+        <script type="text/javascript" src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+    {{ end }}
+{{ end }}
+
+{{- /* Theme Loading */}}
+<script>
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+    const noTransitionStyle = document.createElement("style");
+    noTransitionStyle.appendChild(document.createTextNode(
+        `* {
+            -webkit-transition: none !important;
+            -moz-transition: none !important;
+            -o-transition: none !important;
+            -ms-transition: none !important;
+            transition: none !important;
+        }`));
+        
+    function transitionTheme(theme) {
+        document.head.appendChild(noTransitionStyle);
+        document.documentElement.dataset.theme = theme;
+        window.getComputedStyle(noTransitionStyle).opacity;
+        document.head.removeChild(noTransitionStyle);
+    }
+
+    function setTheme(theme) {
+        if(theme === "system") {
+            transitionTheme(systemTheme);
+            document.documentElement.classList.remove("no-transition");
+            localStorage.clear("theme");
+        } else {
+            transitionTheme(theme);
+            localStorage.setItem("theme", theme);
+        }
+    }
+
+    const storedTheme = localStorage.getItem("theme");
+    const initialTheme = storedTheme != null ? storedTheme : "system";
+    setTheme(initialTheme);
+</script>

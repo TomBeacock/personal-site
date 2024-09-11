@@ -1,0 +1,73 @@
+@use "common";
+
+main {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: auto auto 1fr;
+
+    header {
+        grid-column: 2;
+        margin-block: 2rem 1rem;
+        margin-inline: 2rem;
+
+        @media (max-width: common.$small-cutoff) {
+            margin-inline: 1rem;
+        }
+    }
+
+    .divider {
+        grid-column: 1 / 4;
+    }
+}
+
+.content {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: auto minmax(0, 50rem);
+}
+
+.filters {
+    padding-left: 0;
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+}
+
+.filter-group-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+        margin: 0;
+    }
+}
+
+.page-cards-container {
+    grid-column: 2;
+    margin-block: 1rem 2rem;
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+    @media (max-width: common.$small-cutoff) {
+        margin-inline: 1rem;
+    }
+}
+
+.page-cards-container-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 0.5rem;
+}
+
+.page-cards-container-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1rem;
+}

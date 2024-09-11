@@ -1,0 +1,46 @@
+<nav>
+    <h1><a href="{{ .Site.Home.RelPermalink }}">{{ site.Title }}</a></h1>
+    <ul>
+        {{ range .Site.Sections }}
+            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{ end }}
+    </ul>
+</nav>
+<div class="right-aligned">
+    <button id="theme-toggle" class="plain neutral level1 icon-button">
+        <span class="material-symbols-rounded">dark_mode</span>
+    </button>
+    <script>
+        function onThemeToggleClick(event) {
+            const themeToggle = event.currentTarget;
+            if(document.documentElement.dataset.theme == "light") {
+                setTheme("dark");
+                themeToggle.getElementsByTagName("span")[0].innerHTML = "light_mode";
+            } else {
+                setTheme("light");
+                themeToggle.getElementsByTagName("span")[0].innerHTML = "dark_mode";
+            }
+        }
+    
+        const themeToggle = document.getElementById("theme-toggle");
+        const icon = document.documentElement.dataset.theme == "light" ? "dark_mode" : "light_mode";
+        themeToggle.getElementsByTagName("span")[0].innerHTML = icon;
+        themeToggle.addEventListener("click", onThemeToggleClick);
+    </script>
+
+    {{ if or .IsPage .IsSection }}
+        <button id="drawer-toggle" class="plain neutral level1 icon-button">
+            <span class="material-symbols-rounded">menu</span>
+        </button>
+        <script>
+            function onSidbarToggleClick(event) {
+                const drawer = document.getElementById("drawer");
+                drawer.classList.toggle("visible");
+            }
+        
+            const drawerToggle = document.getElementById("drawer-toggle");
+            drawerToggle.addEventListener("click", onSidbarToggleClick);
+        </script>
+    {{ end }}
+</div>
+

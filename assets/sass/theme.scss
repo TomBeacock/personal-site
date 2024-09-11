@@ -1,0 +1,563 @@
+@use "palette";
+
+:root {
+    &[data-theme="light"] {
+        --bg-body: #{palette.$common-white};
+        --bg-surface: #{palette.$neutral-000};
+        --bg-popup: #{palette.$common-white};
+        --bg-level1: #{palette.$neutral-100};
+        --bg-level2: #{palette.$neutral-200};
+        --bg-level3: #{palette.$neutral-300};
+        --bg-tooltip: #{palette.$neutral-500};
+
+        --text-primary: #{palette.$neutral-800};
+        --text-secondary: #{palette.$neutral-400};
+        --text-tertiary: #{palette.$neutral-300};
+        --text-icon: #{palette.$neutral-500};
+
+        --link: #{palette.$primary-500};
+        --link-hover: #{palette.$primary-400};
+
+        --divider: #{palette.$neutral-300};
+
+        --solid-color: #{palette.$common-white};
+        --solid-bg: #{palette.$primary-500};
+        --solid-hover-bg: #{palette.$primary-600};
+        --solid-active-bg: #{palette.$primary-700};
+        --solid-disabled-color: #{palette.$neutral-400};
+        --solid-disabled-bg: #{palette.$neutral-100};
+
+        --solid-bg-primary: #{palette.$primary-500};
+        --solid-hover-bg-primary: #{palette.$primary-600};
+        --solid-active-bg-primary: #{palette.$primary-700};
+
+        --solid-bg-neutral: #{palette.$neutral-500};
+        --solid-hover-bg-neutral: #{palette.$neutral-600};
+        --solid-active-bg-neutral: #{palette.$neutral-700};
+
+        --solid-bg-danger: #{palette.$danger-500};
+        --solid-hover-bg-danger: #{palette.$danger-600};
+        --solid-active-bg-danger: #{palette.$danger-700};
+
+        --solid-bg-success: #{palette.$success-500};
+        --solid-hover-bg-success: #{palette.$success-600};
+        --solid-active-bg-success: #{palette.$success-700};
+
+        --solid-bg-warning: #{palette.$warning-500};
+        --solid-hover-bg-warning: #{palette.$warning-600};
+        --solid-active-bg-warning: #{palette.$warning-700};
+
+        --outlined-color: #{palette.$primary-500};
+        --outlined-border: #{palette.$primary-300};
+        --outlined-hover-bg: #{palette.$primary-100};
+        --outlined-active-bg: #{palette.$primary-200};
+        --outlined-disabled-color: #{palette.$neutral-400};
+        --outlined-disabled-border: #{palette.$neutral-200};
+
+        --outlined-color-primary: #{palette.$primary-500};
+        --outlined-border-primary: #{palette.$primary-300};
+        --outlined-hover-bg-primary: #{palette.$primary-100};
+        --outlined-active-bg-primary: #{palette.$primary-200};
+
+        --outlined-color-neutral: #{palette.$neutral-700};
+        --outlined-border-neutral: #{palette.$neutral-300};
+        --outlined-hover-bg-neutral: #{palette.$neutral-100};
+        --outlined-active-bg-neutral: #{palette.$neutral-200};
+
+        --outlined-color-danger: #{palette.$danger-500};
+        --outlined-border-danger: #{palette.$danger-300};
+        --outlined-hover-bg-danger: #{palette.$danger-100};
+        --outlined-active-bg-danger: #{palette.$danger-200};
+
+        --outlined-color-success: #{palette.$success-500};
+        --outlined-border-success: #{palette.$success-300};
+        --outlined-hover-bg-success: #{palette.$success-100};
+        --outlined-active-bg-success: #{palette.$success-200};
+
+        --outlined-color-warning: #{palette.$warning-500};
+        --outlined-border-warning: #{palette.$warning-300};
+        --outlined-hover-bg-warning: #{palette.$warning-100};
+        --outlined-active-bg-warning: #{palette.$warning-200};
+
+        --soft-color: #{palette.$primary-700};
+        --soft-bg: #{palette.$primary-100};
+        --soft-hover-bg: #{palette.$primary-200};
+        --soft-active-color: #{palette.$primary-800};
+        --soft-active-bg: #{palette.$primary-300};
+        --soft-disabled-color: #{palette.$neutral-400};
+        --soft-disabled-bg: #{palette.$neutral-000};
+
+        --soft-color-primary: #{palette.$primary-700};
+        --soft-bg-primary: #{palette.$primary-100};
+        --soft-hover-bg-primary: #{palette.$primary-200};
+        --soft-active-color-primary: #{palette.$primary-800};
+        --soft-active-bg-primary: #{palette.$primary-300};
+
+        --soft-color-neutral: #{palette.$neutral-700};
+        --soft-bg-neutral: #{palette.$neutral-100};
+        --soft-hover-bg-neutral: #{palette.$neutral-200};
+        --soft-active-color-neutral: #{palette.$neutral-800};
+        --soft-active-bg-neutral: #{palette.$neutral-300};
+
+        --soft-bg-neutral-1: #{palette.$neutral-200};
+        --soft-hover-bg-neutral-1: #{palette.$neutral-300};
+        --soft-active-bg-neutral-1: #{palette.$neutral-400};
+
+        --soft-color-danger: #{palette.$danger-700};
+        --soft-bg-danger: #{palette.$danger-100};
+        --soft-hover-bg-danger: #{palette.$danger-200};
+        --soft-active-color-danger: #{palette.$danger-800};
+        --soft-active-bg-danger: #{palette.$danger-300};
+
+        --soft-color-success: #{palette.$success-700};
+        --soft-bg-success: #{palette.$success-100};
+        --soft-hover-bg-success: #{palette.$success-200};
+        --soft-active-color-success: #{palette.$success-800};
+        --soft-active-bg-success: #{palette.$success-300};
+
+        --soft-color-warning: #{palette.$warning-700};
+        --soft-bg-warning: #{palette.$warning-100};
+        --soft-hover-bg-warning: #{palette.$warning-200};
+        --soft-active-color-warning: #{palette.$warning-800};
+        --soft-active-bg-warning: #{palette.$warning-300};
+
+        --plain-color: #{palette.$primary-500};
+        --plain-hover-bg: #{palette.$primary-100};
+        --plain-active-bg: #{palette.$primary-200};
+        --plain-disabled-color: #{palette.$neutral-400};
+
+        --plain-color-primary: #{palette.$primary-500};
+        --plain-hover-bg-primary: #{palette.$primary-100};
+        --plain-active-bg-primary: #{palette.$primary-200};
+
+        --plain-color-neutral: #{palette.$neutral-700};
+        --plain-hover-bg-neutral: #{palette.$neutral-100};
+        --plain-active-bg-neutral: #{palette.$neutral-200};
+
+        --plain-hover-bg-neutral-1: #{palette.$neutral-200};
+        --plain-active-bg-neutral-1: #{palette.$neutral-300};
+
+        --plain-color-danger: #{palette.$danger-500};
+        --plain-hover-bg-danger: #{palette.$danger-100};
+        --plain-active-bg-danger: #{palette.$danger-200};
+
+        --plain-color-success: #{palette.$success-500};
+        --plain-hover-bg-success: #{palette.$success-100};
+        --plain-active-bg-success: #{palette.$success-200};
+
+        --plain-color-warning: #{palette.$warning-500};
+        --plain-hover-bg-warning: #{palette.$warning-100};
+        --plain-active-bg-warning: #{palette.$warning-200};
+    }
+
+    &[data-theme="dark"] {
+        --bg-body: #{palette.$common-black};
+        --bg-surface: #{palette.$neutral-900};
+        --bg-popup: #{palette.$common-black};
+        --bg-level1: #{palette.$neutral-800};
+        --bg-level2: #{palette.$neutral-700};
+        --bg-level3: #{palette.$neutral-600};
+        --bg-tooltip: #{palette.$neutral-600};
+
+        --text-primary: #{palette.$neutral-100};
+        --text-secondary: #{palette.$neutral-400};
+        --text-tertiary: #{palette.$neutral-600};
+        --text-icon: #{palette.$neutral-400};
+
+        --link: #{palette.$primary-400};
+        --link-hover: #{palette.$primary-300};
+
+        --divider: #{palette.$neutral-600};
+
+        --solid-color: #{palette.$common-white};
+        --solid-bg: #{palette.$primary-500};
+        --solid-hover-bg: #{palette.$primary-600};
+        --solid-active-bg: #{palette.$primary-700};
+        --solid-disabled-color: #{palette.$neutral-500};
+        --solid-disabled-bg: #{palette.$neutral-800};
+
+        --solid-bg-primary: #{palette.$primary-500};
+        --solid-hover-bg-primary: #{palette.$primary-600};
+        --solid-active-bg-primary: #{palette.$primary-700};
+
+        --solid-bg-neutral: #{palette.$neutral-500};
+        --solid-hover-bg-neutral: #{palette.$neutral-600};
+        --solid-active-bg-neutral: #{palette.$neutral-700};
+
+        --solid-bg-danger: #{palette.$danger-500};
+        --solid-hover-bg-danger: #{palette.$danger-600};
+        --solid-active-bg-danger: #{palette.$danger-700};
+
+        --solid-bg-success: #{palette.$success-500};
+        --solid-hover-bg-success: #{palette.$success-600};
+        --solid-active-bg-success: #{palette.$success-700};
+
+        --solid-bg-warning: #{palette.$warning-500};
+        --solid-hover-bg-warning: #{palette.$warning-600};
+        --solid-active-bg-warning: #{palette.$warning-700};
+
+        --outlined-color: #{palette.$primary-200};
+        --outlined-border: #{palette.$primary-700};
+        --outlined-hover-bg: #{palette.$primary-800};
+        --outlined-active-bg: #{palette.$primary-700};
+        --outlined-disabled-color: #{palette.$neutral-500};
+        --outlined-disabled-border: #{palette.$neutral-800};
+
+        --outlined-color-primary: #{palette.$primary-200};
+        --outlined-border-primary: #{palette.$primary-700};
+        --outlined-hover-bg-primary: #{palette.$primary-800};
+        --outlined-active-bg-primary: #{palette.$primary-700};
+
+        --outlined-color-neutral: #{palette.$neutral-200};
+        --outlined-border-neutral: #{palette.$neutral-700};
+        --outlined-hover-bg-neutral: #{palette.$neutral-800};
+        --outlined-active-bg-neutral: #{palette.$neutral-700};
+
+        --outlined-color-danger: #{palette.$danger-200};
+        --outlined-border-danger: #{palette.$danger-700};
+        --outlined-hover-bg-danger: #{palette.$danger-800};
+        --outlined-active-bg-danger: #{palette.$danger-700};
+
+        --outlined-color-success: #{palette.$success-200};
+        --outlined-border-success: #{palette.$success-700};
+        --outlined-hover-bg-success: #{palette.$success-800};
+        --outlined-active-bg-success: #{palette.$success-700};
+
+        --outlined-color-warning: #{palette.$warning-200};
+        --outlined-border-warning: #{palette.$warning-700};
+        --outlined-hover-bg-warning: #{palette.$warning-800};
+        --outlined-active-bg-warning: #{palette.$warning-700};
+
+        --soft-color: #{palette.$primary-200};
+        --soft-bg: #{palette.$primary-800};
+        --soft-hover-bg: #{palette.$primary-700};
+        --soft-active-color: #{palette.$primary-100};
+        --soft-active-bg: #{palette.$primary-600};
+        --soft-disabled-color: #{palette.$neutral-500};
+        --soft-disabled-bg: #{palette.$neutral-800};
+
+        --soft-color-primary: #{palette.$primary-200};
+        --soft-bg-primary: #{palette.$primary-800};
+        --soft-hover-bg-primary: #{palette.$primary-700};
+        --soft-active-color-primary: #{palette.$primary-100};
+        --soft-active-bg-primary: #{palette.$primary-600};
+
+        --soft-color-neutral: #{palette.$neutral-200};
+        --soft-bg-neutral: #{palette.$neutral-800};
+        --soft-hover-bg-neutral: #{palette.$neutral-700};
+        --soft-active-color-neutral: #{palette.$neutral-100};
+        --soft-active-bg-neutral: #{palette.$neutral-600};
+
+        --soft-bg-neutral-1: #{palette.$neutral-700};
+        --soft-hover-bg-neutral-1: #{palette.$neutral-600};
+        --soft-active-bg-neutral-1: #{palette.$neutral-500};
+
+        --soft-color-danger: #{palette.$danger-200};
+        --soft-bg-danger: #{palette.$danger-800};
+        --soft-hover-bg-danger: #{palette.$danger-700};
+        --soft-active-color-danger: #{palette.$danger-100};
+        --soft-active-bg-danger: #{palette.$danger-600};
+
+        --soft-color-success: #{palette.$success-200};
+        --soft-bg-success: #{palette.$success-800};
+        --soft-hover-bg-success: #{palette.$success-700};
+        --soft-active-color-success: #{palette.$success-100};
+        --soft-active-bg-success: #{palette.$success-600};
+
+        --soft-color-warning: #{palette.$warning-200};
+        --soft-bg-warning: #{palette.$warning-800};
+        --soft-hover-bg-warning: #{palette.$warning-700};
+        --soft-active-color-warning: #{palette.$warning-100};
+        --soft-active-bg-warning: #{palette.$warning-600};
+
+        --plain-color: #{palette.$primary-300};
+        --plain-hover-bg: #{palette.$primary-800};
+        --plain-active-bg: #{palette.$primary-700};
+        --plain-disabled-color: #{palette.$neutral-500};
+
+        --plain-color-primary: #{palette.$primary-300};
+        --plain-hover-bg-primary: #{palette.$primary-800};
+        --plain-active-bg-primary: #{palette.$primary-700};
+
+        --plain-color-neutral: #{palette.$neutral-300};
+        --plain-hover-bg-neutral: #{palette.$neutral-800};
+        --plain-active-bg-neutral: #{palette.$neutral-700};
+
+        --plain-hover-bg-neutral-1: #{palette.$neutral-700};
+        --plain-active-bg-neutral-1: #{palette.$neutral-600};
+
+        --plain-color-danger: #{palette.$danger-300};
+        --plain-hover-bg-danger: #{palette.$danger-800};
+        --plain-active-bg-danger: #{palette.$danger-700};
+
+        --plain-color-success: #{palette.$success-300};
+        --plain-hover-bg-success: #{palette.$success-800};
+        --plain-active-bg-success: #{palette.$success-700};
+
+        --plain-color-warning: #{palette.$warning-300};
+        --plain-hover-bg-warning: #{palette.$warning-800};
+        --plain-active-bg-warning: #{palette.$warning-700};
+
+        --notice-color: #{palette.$neutral-100};
+
+        --notice-bg-note: #{palette.$primary-300};
+        --notice-header-bg-note: #{palette.$primary-500};
+    }
+}
+
+.primary {
+    --solid-bg: var(--solid-bg-primary);
+    --solid-hover-bg: var(--solid-hover-bg-primary);
+    --solid-active-bg: var(--solid-active-bg-primary);
+
+    --outlined-color: var(--outlined-color-primary);
+    --outlined-border: var(--outlined-border-primary);
+    --outlined-hover-bg: var(--outlined-hover-bg-primary);
+    --outlined-active-bg: var(--outlined-active-bg-primary);
+
+    --soft-color: var(--soft-color-primary);
+    --soft-bg: var(--soft-bg-primary);
+    --soft-hover-bg: var(--soft-hover-bg-primary);
+    --soft-active-color: var(--soft-active-color-primary);
+    --soft-active-bg: var(--soft-active-bg-primary);
+
+    --plain-color: var(--plain-color-primary);
+    --plain-hover-bg: var(--plain-hover-bg-primary);
+    --plain-active-bg: var(--plain-active-bg-primary);
+}
+
+.neutral {
+    --solid-bg: var(--solid-bg-neutral);
+    --solid-hover-bg: var(--solid-hover-bg-neutral);
+    --solid-active-bg: var(--solid-active-bg-neutral);
+
+    --outlined-color: var(--outlined-color-neutral);
+    --outlined-border: var(--outlined-border-neutral);
+    --outlined-hover-bg: var(--outlined-hover-bg-neutral);
+    --outlined-active-bg: var(--outlined-active-bg-neutral);
+
+    --soft-color: var(--soft-color-neutral);
+    --soft-bg: var(--soft-bg-neutral);
+    --soft-hover-bg: var(--soft-hover-bg-neutral);
+    --soft-active-color: var(--soft-active-color-neutral);
+    --soft-active-bg: var(--soft-active-bg-neutral);
+
+    --plain-color: var(--plain-color-neutral);
+    --plain-hover-bg: var(--plain-hover-bg-neutral);
+    --plain-active-bg: var(--plain-active-bg-neutral);
+
+    &.level1 {
+        --soft-bg: var(--soft-bg-neutral-1);
+        --soft-hover-bg: var(--soft-hover-bg-neutral-1);
+        --soft-active-bg: var(--soft-active-bg-neutral-1);
+
+        --plain-hover-bg: var(--plain-hover-bg-neutral-1);
+        --plain-active-bg: var(--plain-active-bg-neutral-1);
+    }
+}
+
+.danger {
+    --solid-bg: var(--solid-bg-danger);
+    --solid-hover-bg: var(--solid-hover-bg-danger);
+    --solid-active-bg: var(--solid-active-bg-danger);
+
+    --outlined-color: var(--outlined-color-danger);
+    --outlined-border: var(--outlined-border-danger);
+    --outlined-hover-bg: var(--outlined-hover-bg-danger);
+    --outlined-active-bg: var(--outlined-active-bg-danger);
+
+    --soft-color: var(--soft-color-danger);
+    --soft-bg: var(--soft-bg-danger);
+    --soft-hover-bg: var(--soft-hover-bg-danger);
+    --soft-active-color: var(--soft-active-color-danger);
+    --soft-active-bg: var(--soft-active-bg-danger);
+
+    --plain-color: var(--plain-color-danger);
+    --plain-hover-bg: var(--plain-hover-bg-danger);
+    --plain-active-bg: var(--plain-active-bg-danger);
+}
+
+.success {
+    --solid-bg: var(--solid-bg-success);
+    --solid-hover-bg: var(--solid-hover-bg-success);
+    --solid-active-bg: var(--solid-active-bg-success);
+
+    --outlined-color: var(--outlined-color-success);
+    --outlined-border: var(--outlined-border-success);
+    --outlined-hover-bg: var(--outlined-hover-bg-success);
+    --outlined-active-bg: var(--outlined-active-bg-success);
+
+    --soft-color: var(--soft-color-success);
+    --soft-bg: var(--soft-bg-success);
+    --soft-hover-bg: var(--soft-hover-bg-success);
+    --soft-active-color: var(--soft-active-color-success);
+    --soft-active-bg: var(--soft-active-bg-success);
+
+    --plain-color: var(--plain-color-success);
+    --plain-hover-bg: var(--plain-hover-bg-success);
+    --plain-active-bg: var(--plain-active-bg-success);
+}
+
+.warning {
+    --solid-bg: var(--solid-bg-warning);
+    --solid-hover-bg: var(--solid-hover-bg-warning);
+    --solid-active-bg: var(--solid-active-bg-warning);
+
+    --outlined-color: var(--outlined-color-warning);
+    --outlined-border: var(--outlined-border-warning);
+    --outlined-hover-bg: var(--outlined-hover-bg-warning);
+    --outlined-active-bg: var(--outlined-active-bg-warning);
+
+    --soft-color: var(--soft-color-warning);
+    --soft-bg: var(--soft-bg-warning);
+    --soft-hover-bg: var(--soft-hover-bg-warning);
+    --soft-active-color: var(--soft-active-color-warning);
+    --soft-active-bg: var(--soft-active-bg-warning);
+
+    --plain-color: var(--plain-color-warning);
+    --plain-hover-bg: var(--plain-hover-bg-warning);
+    --plain-active-bg: var(--plain-active-bg-warning);
+}
+
+@mixin solid-interact($selector) {
+    #{$selector}.solid {
+        &:hover {
+            background-color: var(--solid-hover-bg);
+        }
+    
+        &:active {
+            background-color: var(--solid-active-bg);
+        }
+    
+        &:disabled {
+            color: var(--solid-disabled-color);
+            background-color: var(--solid-disabled-bg);
+        }
+    }
+}
+    
+.solid {
+    color: var(--solid-color);
+    background-color: var(--solid-bg);
+}
+
+.outlined {
+    color: var(--outlined-color);
+    background-color: transparent;
+    border-color: var(--outlined-border);
+    border-width: 1px;
+    border-style: solid;
+}
+
+.soft {
+    color: var(--soft-color);
+    background-color: var(--soft-bg);
+}
+
+.plain {
+    color: var(--plain-color);
+    background-color: transparent;
+}
+
+button, input[type="checkbox"], .clickable {  
+    &.solid {
+        &:hover {
+            background-color: var(--solid-hover-bg);
+        }
+    
+        &:active {
+            background-color: var(--solid-active-bg);
+        }
+    
+        &:disabled {
+            color: var(--solid-disabled-color);
+            background-color: var(--solid-disabled-bg);
+        }
+    }
+
+    &.outlined {
+        &:hover {
+            background-color: var(--outlined-hover-bg);
+        }
+
+        &:active {
+            background-color: var(--outlined-active-bg);
+        }
+
+        &:disabled {
+            color: var(--outlined-disabled-color);
+            background-color: transparent;
+            border-color: var(--outlined-disabled-border);
+        }
+    }
+
+    &.soft {
+        &:hover {
+            background-color: var(--soft-hover-bg);
+        }
+
+        &:active {
+            color: var(--soft-active-color);
+            background-color: var(--soft-active-bg);
+        }
+
+        &:disabled {
+            color: var(--soft-disabled-color);
+            background-color: var(--soft-disabled-bg);
+        }
+    }
+
+    &.plain {
+        &:hover {
+            background-color: var(--plain-hover-bg);
+        }
+
+        &:active {
+            background-color: var(--plain-active-bg);
+        }
+
+        &:disabled {
+            color: var(--plain-disabled-color);
+            background-color: var(--plain-disabled-bg);
+        }
+    }
+}
+
+.text-primary {
+    color: var(--text-primary);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+.text-tertiary {
+    color: var(--text-tertiary);
+}
+
+:root {
+    font-size: 1em;
+    --decorator-gap: 0.5rem;
+    --padding-block: 0.5rem;
+    --padding-inline: 1rem;
+}
+
+.small {
+    font-size: 0.75em;
+    --decorator-gap: 0.25rem;
+    --padding-block: 0.275rem;
+    --padding-inline: 0.5rem;
+    
+    .material-symbols-rounded {
+        font-size: 16px;
+    }
+}
+
+.large {
+    font-size: 1.25em;
+    --decorator-gap: 0.75rem;
+
+    .material-symbols-rounded {
+        font-size: 28px;
+    }
+}

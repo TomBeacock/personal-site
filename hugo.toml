@@ -1,0 +1,26 @@
+baseURL = 'https://thomasbeacock.com/'
+languageCode = 'en-us'
+title = 'TB'
+pluralizelisttitles = false
+
+[markup]
+    [markup.tableOfContents]
+        ordered = false
+    [markup.highlight]
+        noClasses = false
+        linenos = true
+        lineNumbersInTable = true
+    [markup.goldmark]
+        [markup.goldmark.extensions]
+            [markup.goldmark.extensions.passthrough]
+                enable = true
+                [markup.goldmark.extensions.passthrough.delimiters]
+                    block = [['\[', '\]']]
+                    inline = [['\(', '\)']]
+        [markup.goldmark.renderer]
+            unsafe = true
+[taxonomies]
+    programmingLanguage = 'programmingLanguages'
+    computingField = "computingFields"
+[params]
+    math = true

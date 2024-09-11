@@ -1,0 +1,21 @@
+button {
+    border: none;
+    border-radius: 0.25rem;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--decorator-gap);
+    padding: var(--padding-block) var(--padding-inline);
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: 600;
+    text-transform: capitalize;
+    transition: background-color 0.2s ease-in-out;
+    vertical-align: middle;
+    cursor: pointer;
+    
+    &.icon-button {
+        padding-inline: var(--padding-block);
+    }
+}

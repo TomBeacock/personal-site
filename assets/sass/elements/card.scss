@@ -1,0 +1,12 @@
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.25rem;
+    padding: 1rem;
+
+    h2 {
+        font-size: 1.25em;
+        margin-block: 0;
+    }
+}

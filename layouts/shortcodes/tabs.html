@@ -1,0 +1,24 @@
+{{ with .Inner }}
+{{ end }}
+{{ $groupId := default "default" (.Get "groupId") }}
+<div class="tab-panel">
+    <div class="tab-nav">
+    {{ range $idx, $tab := .Scratch.Get "tabs" }}
+        {{ $active := cond (eq $idx 0) "active" "" }}
+        <button
+            data-tab-item="{{ .name }}"
+            data-tab-group="{{ $groupId }}"
+            class="tab-button plain neutral level1 {{ $active }}">
+            {{ .name }}
+        </button>
+    {{ end }}
+    </div>
+    <div class="tab-content-area">
+        {{ range $idx, $tab := .Scratch.Get "tabs" }}
+            {{ $active := cond (eq $idx 0) "active" "" }}
+            <div data-tab-item="{{ .name }}" data-tab-group="{{ $groupId }}" class="tab-content {{ $active }}">
+                {{ .content }}
+            </div>
+        {{ end }}
+    </div>
+</div>

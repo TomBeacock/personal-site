@@ -1,0 +1,47 @@
+<div class="table-container">
+    <div class="table-container-inner">
+        <table
+            {{- range $k, $v := .Attributes -}}
+                {{- if $v -}}
+                    {{- printf " %s=%q" $k $v | safeHTMLAttr -}}
+                {{- end -}}
+            {{- end -}}>
+            <thead>
+                {{- range .THead }}
+                <tr>
+                    {{- range . }}
+                        {{- if eq .Alignment "left" -}}
+                        <th>
+                            {{- .Text -}}
+                        </th>
+                        {{else}}
+                        {{- $style := printf "style=%q" (printf "text-align: %s" .Alignment) -}}
+                        <th {{ $style | safeHTMLAttr }}>
+                            {{- .Text -}}
+                        </th>
+                        {{- end -}}
+                    {{- end }}
+                </tr>
+                {{- end }}
+            </thead>
+            <tbody>
+                {{- range .TBody }}
+                <tr>
+                    {{- range . }}
+                        {{- if eq .Alignment "left" -}}
+                        <td>
+                            {{- .Text -}}
+                        </td>
+                        {{else}}
+                        {{- $style := printf "style=%q" (printf "text-align: %s" .Alignment) -}}
+                        <td {{ $style | safeHTMLAttr }}>
+                            {{- .Text -}}
+                        </td>
+                        {{- end -}}
+                    {{- end }}
+                </tr>
+                {{- end }}
+            </tbody>
+        </table>
+    </div>
+</div>

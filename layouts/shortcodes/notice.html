@@ -1,0 +1,19 @@
+{{ with .Inner }}
+{{ end }}
+{{ $inner := .Inner }}
+{{ with .Get 0 }}
+    {{ if in (slice "info" "warning" "danger" "tip") . }}
+        {{ $icon := index (dict  "info" "info" "warning" "warning" "danger" "error" "tip" "lightbulb") . }}
+        <div class="notice {{ . }}">
+            <div class="notice-header">
+                <span class="material-symbols-rounded">{{ $icon }}</span>
+                <span><b>{{ title . }}</b></span>
+            </div>
+            {{ $inner }}
+        </div>
+    {{ else }}
+        {{ errorf "Invalid notice type %s, expected one of (note, warning, tip, info)" . }}
+    {{ end }}
+{{ else }}
+    {{ errorf "Invalid arguments, expected one of (note, warning, tip, info)" }}
+{{ end }}

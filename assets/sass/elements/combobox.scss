@@ -1,0 +1,73 @@
+.combobox {
+    position: relative;
+    display: inline-block;
+
+    .dropdown {
+        position: absolute;
+        border-radius: 0.25rem;
+        padding: 0;
+        margin: 0;
+        margin-top: 0.25rem;
+        z-index: 1;
+        display: none;
+        min-width: 100%;
+
+        &.open {
+            display: block;
+        }
+
+        li {
+            list-style: none;
+            padding-block: var(--padding-block);
+            padding-inline: var(--padding-inline);
+            text-wrap: nowrap;
+            text-transform: capitalize;
+            cursor: pointer;
+
+            &:first-child {
+                border-radius: 0.25rem 0.25rem 0 0;
+            }
+
+            &:last-child {
+                border-radius: 0 0 0.25rem 0.25rem;
+            }
+        }
+
+        &.solid {
+            li {
+                &:hover {background-color: var(--solid-hover-bg);}
+
+                &:active, &.selected {background-color: var(--solid-active-bg);}
+            }
+        }
+
+        &.outlined {
+            background-color: var(--bg-surface);
+
+            li {
+                &:hover {background-color: var(--outlined-hover-bg);}
+                &:active, &.selected {background-color: var(--outlined-active-bg);}
+            }
+        }
+
+        &.soft {
+            li {
+                &:hover {background-color: var(--soft-hover-bg);}
+
+                &:active, &.selected {
+                    color: var(--soft-active-color);
+                    background-color: var(--soft-active-bg);
+                }
+            }
+        }
+
+        &.plain {
+            background-color: var(--bg-surface);
+
+            li {
+                &:hover { background-color: var(--plain-hover-bg);}
+                &:active, &.selected {background-color: var(--plain-active-bg);}
+            }
+        }
+    }
+}

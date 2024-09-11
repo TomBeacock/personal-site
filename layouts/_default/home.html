@@ -1,0 +1,14 @@
+{{ define "content" }}
+<main class="grow">
+    <div class="card-container">
+        <div class="card-container-inner">
+            {{ range .Sections }}
+            <div class="card outlined neutral clickable">
+                <h2>{{ or .Title .RelPermalink }}</h2>
+                <a class="overlay" href="{{ .RelPermalink }}"></a>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</main>
+{{ end }}

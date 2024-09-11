@@ -1,0 +1,80 @@
+{{ define "content" }}
+
+{{- $sectionPages := slice -}}
+{{- range .CurrentSection.RegularPages.GroupBy "Weight" -}}
+    {{- range .ByDate -}}
+        {{- $sectionPages = append . $sectionPages -}}
+    {{- end -}}
+{{- end -}}
+
+<div class="flex row grow">
+    <div id="drawer" class="sidebar drawer border-right sidebar-section">
+        <div class="sidebar-inner">
+            <aside class="sidebar-section-toc">
+                <p><b>On this page</b></p>
+                {{- partial "toc.html" . -}}
+            </aside>
+            <aside>
+                <p><b>In this section</b></p>
+                <nav class="toc">
+                    <ul>
+                        {{- range $sectionPages -}}
+                            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                        {{- end -}}
+                    </ul>
+                </nav>
+            </aside>
+        </div>
+    </div>
+    <main>
+        <header>
+            <h1 class="title">{{ .Title }}</h1>
+            <div class="date">
+                <span><span class="text-secondary">Published: </span>{{- .Date | time.Format "Jan 02, 2006" -}}</span>
+                {{- if .Lastmod -}}
+                <span><span class="text-secondary">Last updated: </span>{{- .Lastmod | time.Format "Jan 02, 2006" -}}</span>
+                {{- end -}}
+            </div>
+        </header>
+        <div class="divider"></div>
+        <article class="content">
+            {{ .Content }}
+        </article>
+        {{- $pageIndex := 0 -}}
+        {{- $page := . -}}
+        {{- range $idx, $sectionPage := $sectionPages -}}
+            {{- if $page.Eq . -}}
+                {{- $pageIndex = $idx -}}
+                {{- break -}}
+            {{- end -}}
+        {{- end -}}
+        {{- $prevPage := index $sectionPages (sub $pageIndex 1) -}}
+        {{- $nextPage := index $sectionPages (add $pageIndex 1) -}}
+        {{- if or $prevPage $nextPage -}}
+            <div class="divider"></div>
+            <footer>
+                {{- with $prevPage -}}
+                    <a class="icon-link prev" href="{{ .RelPermalink}}">
+                        <span class="material-symbols-rounded">arrow_back</span>
+                        Previous
+                    </a>
+                {{- end -}}
+                {{- with $nextPage -}}
+                    <a class="icon-link next" href="{{ .RelPermalink}}">
+                        Next
+                        <span class="material-symbols-rounded">arrow_forward</span>
+                    </a>
+                {{- end -}}
+            </footer>
+        {{- end -}}
+    </main>
+    <div class="sidebar border-left sidebar-toc">
+        <div class="sidebar-inner">
+            <aside>
+                <p><b>On this page</b></p>
+                {{- partial "toc.html" . -}}
+            </aside>
+        </div>
+    </div>
+</div>
+{{ end }}

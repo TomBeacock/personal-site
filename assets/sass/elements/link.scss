@@ -1,0 +1,22 @@
+a {
+    color: var(--link);
+    text-decoration: none;
+    transition: color 0.1s ease-in-out;
+    cursor: pointer;
+    
+    &:hover{
+        color: var(--link-hover);
+    }
+
+    &.overlay::after {
+        content: "";
+        position: absolute;
+        inset: 0px;
+        border-radius: 0.25rem;
+    }
+
+    &.icon-link {
+        display: inline-flex;
+        gap: var(--decorator-gap);
+    }
+}
