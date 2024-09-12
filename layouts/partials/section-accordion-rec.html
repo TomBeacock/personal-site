@@ -1,0 +1,33 @@
+{{- $target := .target -}}
+
+{{- $sectionPages := slice -}}
+{{- range .context.CurrentSection.Pages.GroupBy "Weight" -}}
+    {{- range .ByDate -}}
+        {{- $sectionPages = append . $sectionPages -}}
+    {{- end -}}
+{{- end -}}
+
+{{- range $sectionPages -}}
+    {{- if .IsSection -}}
+        {{- $open := cond (.IsAncestor $target) "open" "" -}}
+        <li class="toggle {{ $open }}">
+            <div class="header plain neutral clickable">
+                <span>{{ .Title }}</span>
+                <span class="arrow material-symbols-rounded"></span>
+            </div>
+            <ol>
+                {{- partial "section-accordion-rec" (dict "context" . "target" $target) -}}
+            </ol>
+        </li>
+    {{- else -}}
+        {{- if eq $target . -}}
+            <li class="plain neutral clickable selected">
+                <a class="overlay" href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </li>
+        {{- else -}}
+            <li class="plain neutral clickable">
+                <a class="overlay" href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </li>
+        {{- end -}}
+    {{- end -}}
+{{- end -}}

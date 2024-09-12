@@ -1,7 +1,7 @@
 {{ define "content" }}
 
 {{- $sectionPages := slice -}}
-{{- range .CurrentSection.RegularPages.GroupBy "Weight" -}}
+{{- range .CurrentSection.Pages.GroupBy "Weight" -}}
     {{- range .ByDate -}}
         {{- $sectionPages = append . $sectionPages -}}
     {{- end -}}
@@ -15,16 +15,12 @@
                 {{- partial "toc.html" . -}}
             </aside>
             {{- if gt (len $sectionPages) 1 -}}
-                <aside>
-                    <p><b>In this section</b></p>
-                    <nav class="toc">
-                        <ul>
-                            {{- range $sectionPages -}}
-                                <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-                            {{- end -}}
-                        </ul>
-                    </nav>
-                </aside>
+            <aside>
+                <p><b>In this section</b></p>
+                <nav>
+                    {{- partial "section-accordion" . -}}
+                </nav>
+            </aside>
             {{- end -}}
         </div>
     </div>

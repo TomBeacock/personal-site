@@ -50,6 +50,14 @@ for(const tabPanel of tabPanels) {
     }
 }
 
+const accordions = document.getElementsByClassName("accordion");
+for(const accordion of accordions) {
+    const toggles = accordion.getElementsByClassName("toggle");
+    for(const toggle of toggles) {
+        toggle.addEventListener("click", () => { toggle.classList.toggle("open"); })
+    }
+}
+
 const codeBlocks = document.getElementsByClassName("highlight");
 for(const codeBlock of codeBlocks) {
     const codeElements = codeBlock.getElementsByTagName("code");

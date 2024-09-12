@@ -1,0 +1,7 @@
+{{- $root := index .Ancestors.Reverse 2 -}}
+
+<nav class="accordion">
+    <ol>
+        {{- partial "section-accordion-rec" (dict "context" $root "target" .) -}}
+    </ol>
+</nav>

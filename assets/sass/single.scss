@@ -15,17 +15,6 @@
     }
 }
 
-.toc {
-    ul {
-        list-style-type: none;
-        padding-left: 1.25rem;
-    }
-
-    &>ul {
-        padding-left: 0;
-    }
-}
-
 .sidebar-section-toc {
     @media(min-width: common.$medium-cutoff) {
         display: none;

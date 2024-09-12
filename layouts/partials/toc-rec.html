@@ -1,0 +1,10 @@
+{{- range .Headings -}}
+    <li class="plain neutral clickable">
+        <a class="overlay" href="#{{ .ID }}">{{ .Title }}</a>
+    </li>
+    {{- if .Headings -}}
+        <ol>
+            {{- partial "toc-rec" . -}}
+        </ol>
+    {{- end -}}
+{{- end -}}

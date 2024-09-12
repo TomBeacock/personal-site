@@ -118,6 +118,14 @@ Disabled:
     Plain
 </label>
 
+## Headings 1
+
+### Headings 2
+
+#### Headings 3
+
+##### Headings 4
+
 ## Images
 
 {{< figure src="dog.jpg" alt="Cute dog" caption="A cute dog lying in a field." >}}

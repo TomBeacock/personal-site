@@ -10,6 +10,7 @@
 @use "elements/figure.scss";
 @use "elements/checkbox.scss";
 @use "elements/combobox";
+@use "elements/accordion.scss";
 
 html {
     margin: 0;
@@ -144,7 +145,7 @@ h1, h2, h3, h4, h5, h6 {
 
     &.drawer {
         @media(max-width: common.$small-cutoff) {
-            background-color: var(--bg-level1);
+            background-color: var(--bg-surface);
             position: fixed;
             top: common.$header-height;
             right: -16rem;
@@ -165,7 +166,7 @@ h1, h2, h3, h4, h5, h6 {
     position: sticky;
     top: common.$header-height;
     max-height: calc(100vh - common.$header-height);
-    padding-inline: 2rem;
+    padding-inline: 1rem;
     margin-right: 0.125rem;
     display: flow-root;
     overflow-y: auto;
