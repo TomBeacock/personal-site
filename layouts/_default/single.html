@@ -1,11 +1,6 @@
 {{ define "content" }}
 
-{{- $sectionPages := slice -}}
-{{- range .CurrentSection.Pages.GroupBy "Weight" -}}
-    {{- range .ByDate -}}
-        {{- $sectionPages = append . $sectionPages -}}
-    {{- end -}}
-{{- end -}}
+{{- $sectionPages := partial "func/section-pages-rec" (index .Ancestors.Reverse 2) -}}
 
 <div class="flex row grow">
     <div id="drawer" class="sidebar drawer border-right sidebar-section">
