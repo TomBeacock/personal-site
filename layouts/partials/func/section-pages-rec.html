@@ -1,10 +1,12 @@
 {{- $out := slice -}}
-{{- range .Pages.GroupBy "Weight" -}}
-    {{- range .ByDate -}}
-        {{- if .IsSection -}}
-            {{- $out = append (partial "func/section-pages-rec" .) $out -}}
-        {{- else -}}
-            {{- $out = append . $out -}}
+{{- with .Pages -}}
+    {{- range .GroupBy "Weight" -}}
+        {{- range .ByDate -}}
+            {{- if .IsSection -}}
+                {{- $out = append (partial "func/section-pages-rec" .) $out -}}
+            {{- else -}}
+                {{- $out = append . $out -}}
+            {{- end -}}
         {{- end -}}
     {{- end -}}
 {{- end -}}

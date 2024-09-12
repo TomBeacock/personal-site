@@ -1,0 +1,9 @@
+{{- $index := -1 -}}
+{{- $target := .item -}}
+{{- range $i, $item := .collection -}}
+    {{- if eq $target $item -}}
+        {{- $index = $i -}}
+        {{- break -}}
+    {{- end -}}
+{{- end -}}
+{{- return $index -}}
