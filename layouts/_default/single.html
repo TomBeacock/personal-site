@@ -14,16 +14,18 @@
                 <p><b>On this page</b></p>
                 {{- partial "toc.html" . -}}
             </aside>
-            <aside>
-                <p><b>In this section</b></p>
-                <nav class="toc">
-                    <ul>
-                        {{- range $sectionPages -}}
-                            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-                        {{- end -}}
-                    </ul>
-                </nav>
-            </aside>
+            {{- if gt (len $sectionPages) 1 -}}
+                <aside>
+                    <p><b>In this section</b></p>
+                    <nav class="toc">
+                        <ul>
+                            {{- range $sectionPages -}}
+                                <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                            {{- end -}}
+                        </ul>
+                    </nav>
+                </aside>
+            {{- end -}}
         </div>
     </div>
     <main>
