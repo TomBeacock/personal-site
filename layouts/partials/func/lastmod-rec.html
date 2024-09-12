@@ -1,0 +1,10 @@
+{{- $lastmod := 0 -}}
+{{- range .Pages -}}
+    {{- if .IsSection -}}
+        {{- $childLastmod := partial "func/lastmod-rec" . -}}
+        {{- $lastmod = cond (gt $childLastmod $lastmod) $childLastmod $lastmod -}}
+    {{- else -}}
+        {{- $lastmod = cond (gt .Lastmod $lastmod) .Lastmod $lastmod -}}
+    {{- end -}}
+{{- end -}}
+{{- return $lastmod -}}

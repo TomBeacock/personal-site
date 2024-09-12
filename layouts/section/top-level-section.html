@@ -76,12 +76,7 @@
                 {{- /* Sort pages by lastmod (including child pages) */ -}}
                 {{- $pages := slice -}}
                 {{- range .Pages -}}
-                    {{ $lastmod := .Lastmod }}
-                    {{ range .Pages }}
-                        {{ if gt .Lastmod $lastmod }}
-                            {{ $lastmod = .Lastmod }}
-                        {{ end }}
-                    {{ end }}
+                    {{ $lastmod := partial "func/lastmod-rec" . }}
                     {{- $pages = append (dict "page" . "lastmod" $lastmod) $pages -}}
                 {{- end -}}
                 {{- $pages = sort $pages "lastmod" "desc" -}}
