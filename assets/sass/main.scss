@@ -100,10 +100,10 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 999;
 
     a {
-        color: var(--palette-neutral-500);
+        color: var(--text-primary);
 
         &:hover {
-            color: var(--palette-neutral-400);
+            color: var(--text-secondary);
         }
     }
 
