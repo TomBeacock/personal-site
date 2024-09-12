@@ -1,0 +1,17 @@
+<nav class="breadcrumb">
+    <ol>
+        {{- range .Ancestors.Reverse -}}
+            <li>
+                {{- if .IsHome -}}
+                    <a href="{{ .RelPermalink }}">Home</a>
+                {{- else -}}
+                    <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+                {{- end -}}
+            </li>
+            <span class="material-symbols-rounded">chevron_right</span>
+        {{- end -}}
+        <li class="active">
+            <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        </li>
+    </ol>
+</nav>

@@ -21,6 +21,7 @@
     </div>
     <main>
         <header>
+            {{- partial "breadcrumb" . -}}
             <h1 class="title">{{ .Title }}</h1>
             <div class="date">
                 <span><span class="text-secondary">Published: </span>{{- .Date | time.Format "Jan 02, 2006" -}}</span>
