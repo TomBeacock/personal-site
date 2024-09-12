@@ -8,11 +8,7 @@ main {
     header {
         grid-column: 2;
         margin-block: 2rem 1rem;
-        margin-inline: 2rem;
-        
-        @media (max-width: common.$small-cutoff) {
-            margin-inline: 1rem;
-        }
+        margin-inline: 1rem;
         
         h1 {
             font-size: 2.5em;
