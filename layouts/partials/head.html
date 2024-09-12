@@ -69,6 +69,14 @@
     {{ end }}
 {{ end }}
 
+{{ if .IsPage }}
+    {{ $opts := dict "targetpath" "js/single.js" }}
+    {{ with resources.Get "js/single.js" | js.Build $opts | minify | fingerprint }}
+        <script type="text/javascript" src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+    {{ end }}
+{{ end }}
+
+
 {{- /* Theme Loading */}}
 <script>
     const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
