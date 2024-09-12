@@ -45,12 +45,12 @@
                     {{- with $prevPage -}}
                         <a class="icon-link prev" href="{{ .RelPermalink}}">
                             <span class="material-symbols-rounded">arrow_back</span>
-                            Previous
+                            {{- .LinkTitle -}}
                         </a>
                     {{- end -}}
                     {{- with $nextPage -}}
                         <a class="icon-link next" href="{{ .RelPermalink}}">
-                            Next
+                            {{- .LinkTitle -}}
                             <span class="material-symbols-rounded">arrow_forward</span>
                         </a>
                     {{- end -}}

@@ -17,6 +17,7 @@ a {
 
     &.icon-link {
         display: inline-flex;
+        align-items: center;
         gap: var(--decorator-gap);
     }
 }
