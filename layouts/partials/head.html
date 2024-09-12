@@ -19,12 +19,19 @@
         <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
     {{ end }}
 {{ end }}
-{{ if .IsSection }}
-    {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/section.css" }}
-    {{ with resources.Get "sass/section.scss" | toCSS $opts | minify | fingerprint }}
-        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+{{- if .IsSection -}}
+    {{ if eq .Parent .Site.Home }}
+        {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/top-level-section.css" }}
+        {{ with resources.Get "sass/top-level-section.scss" | toCSS $opts | minify | fingerprint }}
+            <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+        {{ end }}
+    {{ else }}
+        {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/section.css" }}
+        {{ with resources.Get "sass/section.scss" | toCSS $opts | minify | fingerprint }}
+            <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+        {{ end }}
     {{ end }}
-{{ end }}
+{{- end -}}
 {{ if .IsPage }}
     {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/single.css" }}
     {{ with resources.Get "sass/single.scss" | toCSS $opts | minify | fingerprint }}
@@ -55,9 +62,9 @@
     <script type="text/javascript" src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
 {{ end }}
 
-{{ if .IsSection }}
-    {{ $opts := dict "targetpath" "js/section.js" }}
-    {{ with resources.Get "js/section.js" | js.Build $opts | minify | fingerprint }}
+{{ if and .IsSection (eq .Parent .Site.Home) }}
+    {{ $opts := dict "targetpath" "js/top-level-section.js" }}
+    {{ with resources.Get "js/top-level-section.js" | js.Build $opts | minify | fingerprint }}
         <script type="text/javascript" src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
     {{ end }}
 {{ end }}

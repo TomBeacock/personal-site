@@ -1,0 +1,132 @@
+{{ define "content" }}
+<main class="grow">
+    <header>
+        <h1>{{ .Title }}</h1>
+    </header>
+    <div class="divider"></div>
+    <div class="content">
+        <aside id="drawer" class="sidebar drawer filters">
+            <div class="sidebar-inner">
+                <h2>Filters</h2>
+                {{- $languages := slice -}}
+                {{- range .Pages -}}
+                    {{- $pageLanguages := partial "func/page-taxonomies" (dict "context" . "taxonomy" "programmingLanguage") -}}
+                    {{- $languages = union $languages $pageLanguages -}}
+                {{- end -}}
+                <div id="language-filter" class="filter-group">
+                    <div class="filter-group-header">
+                        <p><b>Language</b></p>
+                        <button class="plain danger small icon-button" style="visibility: hidden">
+                            <span class="material-symbols-rounded">close</span>
+                        </button>
+                    </div>
+                    <ul>
+                        {{- range sort $languages -}}
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="outlined primary">
+                                {{- . -}}
+                            </label>
+                        </li>
+                        {{- end -}}
+                    </ul>
+                </div>
+                {{- $fields := slice -}}
+                {{- range .Pages -}}
+                    {{- $pageFields := partial "func/page-taxonomies" (dict "context" . "taxonomy" "computingField") -}}
+                    {{- $fields = union $fields $pageFields -}}
+                {{- end -}}
+                <div id="field-filter" class="filter-group">
+                    <div class="filter-group-header">
+                        <p><b>Field</b></p>
+                        <button class="plain danger small icon-button" style="visibility: hidden">
+                            <span class="material-symbols-rounded">close</span>
+                        </button>
+                    </div>
+                    <ul>
+                        {{- range sort $fields -}}
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="outlined primary">
+                                {{- . -}}
+                            </label>
+                        </li>
+                        {{- end -}}
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <section class="page-cards-container">
+            <div class="page-cards-container-header">
+                <span>Sort by</span>
+                <div id="page-cards-sort-combobox" class="combobox">
+                    <button class="plain outlined neutral" role="combobox">
+                        <span class="label">Date (new to old)</span>
+                        <span class="material-symbols-rounded">unfold_more</span>
+                    </button>
+                    <ul class="dropdown outlined neutral" role="listbox">
+                        <li role="option" class="selected">Date (new to old)</li>
+                        <li role="option">Date (old to new)</li>
+                        <li role="option">Title (a to z)</li>
+                        <li role="option">Title (z to a)</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="page-card-container" class="page-cards-container-inner">
+                {{- /* Sort pages by lastmod (including child pages) */ -}}
+                {{- $pages := slice -}}
+                {{- range .Pages -}}
+                    {{ $lastmod := .Lastmod }}
+                    {{ range .Pages }}
+                        {{ if gt .Lastmod $lastmod }}
+                            {{ $lastmod = .Lastmod }}
+                        {{ end }}
+                    {{ end }}
+                    {{- $pages = append (dict "page" . "lastmod" $lastmod) $pages -}}
+                {{- end -}}
+                {{- $pages = sort $pages "lastmod" "desc" -}}
+
+                {{- /* Create a card for each page */ -}}
+                {{- range $pages -}}
+                    {{- $lastmod := time.Format "2006-01-02T03:04:05" .lastmod -}}
+
+                    {{- $link := .page.RelPermalink -}}
+                    {{- with index (.page.RegularPages.GroupBy "Weight") 0 -}}
+                        {{- with index .ByDate 0 -}}
+                            {{- $link = .RelPermalink -}}
+                        {{- end -}}
+                    {{- end -}}
+
+                    {{- $pageFields := sort (partial "func/page-taxonomies" (dict "context" .page "taxonomy" "computingField")) -}}
+                    {{- $stringFmtFields := apply $pageFields "fmt.Printf" "\"%s\"" "." -}}
+                    {{- $dataFields := printf "[%s]" (delimit $stringFmtFields ", ") -}}
+
+                    {{- $pageLanguages := sort (partial "func/page-taxonomies" (dict "context" .page "taxonomy" "programmingLanguage")) -}}
+                    {{- $stringFmtLanguages := apply $pageLanguages "fmt.Printf" "\"%s\"" "." -}}
+                    {{- $dataLanguages := printf "[%s]" (delimit $stringFmtLanguages ", ") -}}
+
+                    <div
+                        class="card outlined neutral clickable"
+                        data-title= "{{- .page.Title -}}"
+                        data-lastmod="{{- $lastmod -}}"
+                        data-languages="{{ $dataLanguages }}"
+                        data-fields="{{ $dataFields }}">
+                        <h2>{{ .page.Title }}</h2>
+                        <div class="chip-container">
+                            {{- range $pageFields -}}
+                                <div class="chip outlined primary clickable">{{- . -}}</div>
+                            {{- end -}}
+                            {{- range $pageLanguages -}}
+                                <div class="chip outlined success clickable">{{- . -}}</div>
+                            {{- end -}}
+                        </div>
+                        <p>{{ .page.Description }}</p>
+                        <div class="grow"></div>
+                        <a class="overlay" href="{{ $link }}"></a>
+                    </div>
+                {{ end }}
+            </div>
+        </section>
+    </div>
+</main>
+{{ end }}
