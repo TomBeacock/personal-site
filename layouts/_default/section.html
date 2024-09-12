@@ -1,11 +1,6 @@
 {{ define "content" }}
 
-{{- $sectionPages := slice -}}
-{{- range .CurrentSection.RegularPages.GroupBy "Weight" -}}
-    {{- range .ByDate -}}
-        {{- $sectionPages = append . $sectionPages -}}
-    {{- end -}}
-{{- end -}}
+{{- $sectionPages := partial "func/section-pages-rec" . -}}
 
 <main class="grow">
     <header>
