@@ -1,0 +1,72 @@
+<figure {{ with .Get "class" }} class="{{ . }}"{{ end }}>
+    {{- if .Get "link" -}}
+        <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
+    {{- end -}}
+
+    {{- $url := urls.Parse (.Get "src") -}}
+    {{- $src := $url.String -}}
+    {{- $srcset := slice -}}
+    {{- $width := .Get "width" -}}
+    {{- $height := .Get "height" -}}
+    {{- if not $url.IsAbs -}}
+        {{- with or (.Page.Resources.Get $url.Path) (resources.Get $url.Path) -}}
+            {{- $rawImage := . -}}
+            {{- if or $width $height -}}
+                {{- range slice 0.5 1 2 -}}
+                    {{- $size := "" -}}
+                    {{- if and $width $height -}}
+                        {{- $size = printf "%.0fx%.0f" (math.Floor (mul $width .)) (math.Floor (mul $height .)) -}}
+                    {{- else if $width -}}
+                        {{- $size = printf "%.0fx" (math.Floor (mul $width .)) -}}
+                    {{- else -}}
+                        {{- $size = printf "x%.0f" (math.Floor (mul $height .)) -}}
+                    {{- end -}}
+                    {{- $image := $rawImage.Resize (printf "%s webp" $size) -}}
+                    {{- $srcset = append (dict "link" $image.RelPermalink "width" $image.Width) $srcset -}}
+                {{- end -}}
+                {{- $src = (index $srcset 1).link -}}
+            {{- else -}}
+                {{- if not (eq .MediaType.MainType "webp") -}}
+                    {{- $src = (.Resize (printf "%dx%d webp" .Width .Height)).RelPermalink -}}
+                {{- else -}}
+                    {{- $src = .RelPermalink -}}
+                {{- end -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+
+    <img
+        src="{{ $src }}"
+        {{- with $srcset -}}
+            {{- $fmtSrcset := slice -}}
+            {{- $sizes := slice -}}
+            {{- range . -}}
+                {{- $fmtSrcset = append (printf "%s %dw" .link .width) $fmtSrcset -}}
+                {{- $sizes = append (printf "%dpx" .width) $sizes -}}
+            {{- end -}}
+            srcset="{{- delimit $fmtSrcset ", " -}}"
+        {{- end -}}
+        {{- if or (.Get "alt") (.Get "caption") }}
+        alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
+        {{- end -}}
+        {{- with .Get "width" }} width="{{ . }}"{{ end -}}
+        {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+        {{- with .Get "loading" }} loading="{{ . }}"{{ end -}}>
+
+    {{- if .Get "link" }}</a>{{ end -}}
+    {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
+        <figcaption>
+        {{ with (.Get "title") -}}
+            <h4>{{ . }}</h4>
+        {{- end -}}
+        {{- if or (.Get "caption") (.Get "attr") -}}<p>
+            {{- .Get "caption" | markdownify -}}
+            {{- with .Get "attrlink" }}
+            <a href="{{ . }}">
+            {{- end -}}
+            {{- .Get "attr" | markdownify -}}
+            {{- if .Get "attrlink" }}</a>{{ end }}</p>
+        {{- end }}
+        </figcaption>
+    {{- end }}
+</figure>
