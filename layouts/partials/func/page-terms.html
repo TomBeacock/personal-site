@@ -1,0 +1,5 @@
+{{- $terms := slice -}}
+{{- with index .context.Params .taxonomy -}}
+    {{ $terms = append . $terms }}
+{{- end -}}
+{{- return (sort $terms) -}}

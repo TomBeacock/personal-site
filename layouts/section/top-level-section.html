@@ -10,7 +10,7 @@
                 <h2>Filters</h2>
                 {{- $languages := slice -}}
                 {{- range .Pages -}}
-                    {{- $pageLanguages := partial "func/page-taxonomies" (dict "context" . "taxonomy" "programmingLanguage") -}}
+                    {{- $pageLanguages := partial "func/page-terms" (dict "context" . "taxonomy" "programming languages") -}}
                     {{- $languages = union $languages $pageLanguages -}}
                 {{- end -}}
                 <div id="language-filter" class="filter-group">
@@ -33,7 +33,7 @@
                 </div>
                 {{- $fields := slice -}}
                 {{- range .Pages -}}
-                    {{- $pageFields := partial "func/page-taxonomies" (dict "context" . "taxonomy" "computingField") -}}
+                    {{- $pageFields := partial "func/page-terms" (dict "context" . "taxonomy" "computing fields") -}}
                     {{- $fields = union $fields $pageFields -}}
                 {{- end -}}
                 <div id="field-filter" class="filter-group">
@@ -92,11 +92,11 @@
                         {{- end -}}
                     {{- end -}}
 
-                    {{- $pageFields := sort (partial "func/page-taxonomies" (dict "context" .page "taxonomy" "computingField")) -}}
+                    {{- $pageFields := partial "func/page-terms" (dict "context" .page "taxonomy" "computing fields") -}}
                     {{- $stringFmtFields := apply $pageFields "fmt.Printf" "\"%s\"" "." -}}
                     {{- $dataFields := printf "[%s]" (delimit $stringFmtFields ", ") -}}
 
-                    {{- $pageLanguages := sort (partial "func/page-taxonomies" (dict "context" .page "taxonomy" "programmingLanguage")) -}}
+                    {{- $pageLanguages := partial "func/page-terms" (dict "context" .page "taxonomy" "programming languages")  -}}
                     {{- $stringFmtLanguages := apply $pageLanguages "fmt.Printf" "\"%s\"" "." -}}
                     {{- $dataLanguages := printf "[%s]" (delimit $stringFmtLanguages ", ") -}}
 

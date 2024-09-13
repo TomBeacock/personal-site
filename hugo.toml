@@ -20,7 +20,7 @@ pluralizelisttitles = false
         [markup.goldmark.renderer]
             unsafe = true
 [taxonomies]
-    programmingLanguage = 'programmingLanguages'
-    computingField = "computingFields"
+    "programming language" = 'programming languages'
+    "computing field" = 'computing fields'
 [params]
     math = true

@@ -1,8 +1,0 @@
-{{- $taxonomySlice := slice -}}
-{{- with index .context.Params (printf "%s" .taxonomy) }}
-    {{ $taxonomySlice = append . $taxonomySlice }}
-{{- end -}}
-{{- range index .context.Params (printf "%ss" .taxonomy) -}}
-    {{ $taxonomySlice = append . $taxonomySlice }}
-{{- end -}}
-{{- return $taxonomySlice -}}
