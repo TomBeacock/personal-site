@@ -44,6 +44,12 @@
         <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
     {{ end }}
 {{ end }}
+{{ if or (eq .Kind "taxonomy") (eq .Kind "term") }}
+    {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/list-page.css" }}
+    {{ with resources.Get "sass/list-page.scss" | toCSS $opts | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{ end }}
+{{ end }}
 {{ if eq .Kind "404" }}
     {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/404.css" }}
     {{ with resources.Get "sass/404.scss" | toCSS $opts | minify | fingerprint }}

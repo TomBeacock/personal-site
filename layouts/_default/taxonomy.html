@@ -1,0 +1,19 @@
+{{ define "content" }}
+
+<main class="grow">
+    <header>
+        <h1>{{- .Title -}}</h1>
+    </header>
+    <div class="divider"></div>
+    <div class="card-container">
+        <div class="card-container-inner">
+            {{ range .Pages.ByTitle }}
+                <div class="card outlined neutral clickable">
+                    <h2>{{ .Title }}</h2>
+                    <a class="overlay" href="{{ .RelPermalink }}"></a>
+                </div>
+            {{ end }}
+        </div>
+    </div>
+</main>
+{{ end }}

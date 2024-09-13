@@ -1,0 +1,27 @@
+{{ define "content" }}
+
+<main class="grow">
+    <header>
+        <h1>{{- .Title -}}</h1>
+    </header>
+    <div class="divider"></div>
+    <div class="card-container">
+        <div class="card-container-inner">
+            {{- $pages := slice -}}
+            {{- range .Pages -}}
+                {{ $lastmod := partial "func/lastmod-rec" . }}
+                {{- $pages = append (dict "page" . "lastmod" $lastmod) $pages -}}
+            {{- end -}}
+            {{- $pages = sort $pages "lastmod" "desc" -}}
+
+            {{ range $pages }}
+                <div class="card outlined neutral clickable">
+                    <h2>{{ .page.Title }}</h2>
+                    <p>{{ .page.Description }}</p>
+                    <a class="overlay" href="{{ .page.RelPermalink }}"></a>
+                </div>
+            {{ end }}
+        </div>
+    </div>
+</main>
+{{ end }}
