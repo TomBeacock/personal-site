@@ -1,12 +1,23 @@
 {{ define "content" }}
+
+{{- $sectionPages := partial "func/section-pages-rec" . -}}
+
 <main class="grow">
     <div class="card-container">
+        <header>
+            <h1>Lastest Posts</h1>
+        </header>
         <div class="card-container-inner">
-            {{ range .Sections }}
-            <div class="card outlined neutral clickable">
-                <h2>{{ or .Title .RelPermalink }}</h2>
-                <a class="overlay" href="{{ .RelPermalink }}"></a>
-            </div>
+            {{ range first 8 .Site.RegularPages.ByLastmod.Reverse }}
+                <div class="card outlined neutral clickable">
+                    <span class="text-secondary">{{- .Lastmod | time.Format "Jan 02, 2006" -}}</span>
+                    <h2>{{ or .Title .RelPermalink }}</h2>
+                    {{- with index .Ancestors.Reverse 2 -}}
+                        <span class="text-secondary">{{ .Title }}</span>
+                    {{- end -}}
+                    <p>{{- .Description -}}</p>
+                    <a class="overlay" href="{{ .RelPermalink }}"></a>
+                </div>
             {{ end }}
         </div>
     </div>
